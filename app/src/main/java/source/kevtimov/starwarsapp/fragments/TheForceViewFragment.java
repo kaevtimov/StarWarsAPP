@@ -1,12 +1,14 @@
 package source.kevtimov.starwarsapp.fragments;
 
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,8 +28,9 @@ public class TheForceViewFragment extends Fragment {
 
     private ListView mListView;
     private ArrayAdapter<TheForceHero> mAdapter;
-    private FirebaseFirestore mDb;
-    private Repository<TheForceHero> mTheForceRepository;
+    private ImageView mImageView;
+//    private FirebaseFirestore mDb;
+//    private Repository<TheForceHero> mTheForceRepository;
 
     public TheForceViewFragment() {
         // Required empty public constructor
@@ -49,7 +52,9 @@ public class TheForceViewFragment extends Fragment {
         mAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_expandable_list_item_1);
         mListView.setAdapter(mAdapter);
 
-        mTheForceRepository = new FirebaseRepository<>(TheForceHero.class);
+        mImageView = root.findViewById(R.id.iv_logo);
+
+        //mTheForceRepository = new FirebaseRepository<>(TheForceHero.class);
 
 //        mTheForceRepository.add(new TheForceHero("Lea", "Rebel", "Luke sister"),
 //                newHero -> {});
@@ -58,16 +63,15 @@ public class TheForceViewFragment extends Fragment {
 //        mTheForceRepository.getAll(theForceHeroes -> {
 //            for (TheForceHero hero : theForceHeroes) {
 //                mAdapter.add(hero);
-//                int b =5;
 //            }
 //        });
 
-        mTheForceRepository.add(new TheForceHero("Jaba", "Businessman", "Gambler and a lizard"),
-                newHero -> mTheForceRepository.getAll(theForceHeroes -> {
-                    for (TheForceHero hero : theForceHeroes) {
-                        mAdapter.add(hero);
-                    }
-                }));
+//        mTheForceRepository.add(new TheForceHero("Jaba", "Businessman", "Gambler and a lizard"),
+//                newHero -> mTheForceRepository.getAll(theForceHeroes -> {
+//                    for (TheForceHero hero : theForceHeroes) {
+//                        mAdapter.add(hero);
+//                    }
+//                }));
 
 
 //        mDb.collection("theforceheros")
@@ -90,7 +94,17 @@ public class TheForceViewFragment extends Fragment {
 //                });
 
 
+        loadAdapter();
+
         return root;
+    }
+
+    private void loadAdapter() {
+        mAdapter.add(new TheForceHero("Leia Skywalker", "Rebel", "She is Luke Skywalker sister and Darth Vader's daughter."));
+        mAdapter.add(new TheForceHero("Luke Skywalker", "Jedi Knight", "He is Lea Skywalker brother and Darth Vader's son." +
+                "His master is Obi-One Kenobi and his destiny is to bring balance in the force."));
+        mAdapter.add(new TheForceHero("Han Solo", "Rebel and gambler", "He is Luke Skywalker best friend, Lea biggest love and a very good pilot." +
+                "He owns The millennium falcon."));
     }
 
 }

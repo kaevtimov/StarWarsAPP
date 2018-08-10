@@ -22,4 +22,13 @@ public class TheForceViewActivity extends AppCompatActivity {
                 .replace(R.id.content, mFragment)
                 .commit();
     }
+
+
+    // refresh the list after go back
+//    @Override
+//    public void onRestart(){
+//        super.onRestart();
+//        finish();
+//        startActivity(getIntent());
+//    }
 }

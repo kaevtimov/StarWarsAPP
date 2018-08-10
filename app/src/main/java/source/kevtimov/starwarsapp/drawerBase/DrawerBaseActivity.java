@@ -5,8 +5,11 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
@@ -38,13 +41,21 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
                 .withIcon(android.R.drawable.ic_dialog_info)
                 .withName("About");
 
+        AccountHeader headerResult = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withHeaderBackground(R.drawable.vader_logo)
+                .build();
+
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(getDrawerToolbar())
                 .withSliderBackgroundColor(Color.BLACK)
+                .withAccountHeader(headerResult)
                 .addDrawerItems(
                         viewHeroes,
+                        new DividerDrawerItem(),
                         createSuperheroItem,
+                        new DividerDrawerItem(),
                         aboutApp
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -69,6 +80,8 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+
+
 
     }
 
