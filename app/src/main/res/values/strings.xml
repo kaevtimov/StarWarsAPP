@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">StarWarsApp</string>
+
+    <string name="strat_button_text">START</string>
+    <string name="start_text">PRESS TROOPER</string>
+    <string name="version_app">Version 1.0</string>
+    <string name="star_wars">STAR WARS</string>
+    <string name="about_info">A long time ago in academy far, far away...</string>
+    <string name="about_info_2">A young ninja developer was developing an android application with which
+        he wanted to bring balance in the force. The Dark Side of the force wanted to stop him but they
+        were too weak for him... he was the chosen one! The application has a variety of start wars heroes separated
+    into two views: Dark Side and The Force heroes. The app also has about application info, and the possibility to create your own
+    personal hero...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_jedi_view">JediViewActivity</string>
+
+</resources>
