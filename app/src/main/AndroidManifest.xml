@@ -19,7 +19,8 @@
         <activity android:name=".activities.OptionsActivity" />
         <activity android:name=".activities.AboutActivity" />
         <activity android:name=".activities.MainChooseViewActivity" />
-        <activity android:name=".activities.TheForceViewActivity"></activity>
+        <activity android:name=".activities.TheForceViewActivity" />
+        <activity android:name=".activities.DarkSideViewActivity"></activity>
     </application>
 
 </manifest>

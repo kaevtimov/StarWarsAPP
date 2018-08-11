@@ -27,4 +27,9 @@ public class DarkSideHero {
     public String getInfo() {
         return info;
     }
+
+    @Override
+    public String toString(){
+        return String.format("%s", getName());
+    }
 }

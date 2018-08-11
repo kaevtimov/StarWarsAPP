@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import source.kevtimov.starwarsapp.R;
+import source.kevtimov.starwarsapp.activities.DarkSideViewActivity;
 import source.kevtimov.starwarsapp.activities.TheForceViewActivity;
 
 /**
@@ -47,6 +49,7 @@ public class ChooseViewFragment extends Fragment implements View.OnClickListener
 
         mButtonSith = root.findViewById(R.id.btn_sith);
         mButtonSith.setText("Dark Side");
+        mButtonSith.setOnClickListener(this);
 
 
 
@@ -54,9 +57,19 @@ public class ChooseViewFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(getContext(), TheForceViewActivity.class);
+    public void onClick(View view) {
 
-        startActivity(intent);
+        switch (view.getId()){
+            case R.id.btn_jedi:
+                Intent intentJedi = new Intent(getContext(), TheForceViewActivity.class);
+                startActivity(intentJedi);
+                break;
+            case R.id.btn_sith:
+                Intent intentSith = new Intent(getContext(), DarkSideViewActivity.class);
+                startActivity(intentSith);
+            default:
+                break;
+        }
+
     }
 }
