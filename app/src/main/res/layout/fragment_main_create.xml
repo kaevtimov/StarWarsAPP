@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MainCreateFragment">
+
+    <ImageView
+        android:id="@+id/iv_jedi_or_sith"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="TODO"
+        android:scaleType="fitXY"
+        android:src="@drawable/vader_vs_luke" />
+
+    <Button
+        android:id="@+id/btn_jedi_create"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="475dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/btn_sith_create"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/colorBlack"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="63dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>

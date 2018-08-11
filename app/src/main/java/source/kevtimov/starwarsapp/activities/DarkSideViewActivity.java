@@ -1,7 +1,9 @@
 package source.kevtimov.starwarsapp.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.fragments.DarkSideViewFragment;
@@ -22,5 +24,7 @@ public class DarkSideViewActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.content, mFragment)
                 .commit();
+
     }
+
 }

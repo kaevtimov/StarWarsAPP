@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import source.kevtimov.starwarsapp.R;
+import source.kevtimov.starwarsapp.fragments.DarkSideViewFragment;
 import source.kevtimov.starwarsapp.fragments.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.main_content, mFragment)
                 .commit();
+
     }
 
 }

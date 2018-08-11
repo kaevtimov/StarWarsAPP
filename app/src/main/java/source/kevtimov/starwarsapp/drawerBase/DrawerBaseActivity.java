@@ -16,6 +16,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.activities.AboutActivity;
 import source.kevtimov.starwarsapp.activities.MainChooseViewActivity;
+import source.kevtimov.starwarsapp.activities.MainCreateActivity;
 
 public abstract class DrawerBaseActivity extends AppCompatActivity {
 
@@ -28,7 +29,7 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
                 .withName("View heroes");
 
         PrimaryDrawerItem createSuperheroItem = new PrimaryDrawerItem()
-                //.withIdentifier(SuperheroCreateActivity.IDENTIFIER)
+                .withIdentifier(MainCreateActivity.IDENTIFIER)
                 .withTextColor(Color.WHITE)
                 .withSelectedTextColor(Color.BLACK)
                 .withIcon(android.R.drawable.ic_input_add)
@@ -94,6 +95,8 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
             return new Intent(DrawerBaseActivity.this, AboutActivity.class);
         }else if(identifier == MainChooseViewActivity.IDENTIFIER){
             return new Intent(DrawerBaseActivity.this, MainChooseViewActivity.class);
+        }else if(identifier == MainCreateActivity.IDENTIFIER){
+            return new Intent(DrawerBaseActivity.this, MainCreateActivity.class);
         }
         return null;
     }

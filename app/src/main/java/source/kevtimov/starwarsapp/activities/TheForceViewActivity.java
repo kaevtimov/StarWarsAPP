@@ -1,12 +1,14 @@
 package source.kevtimov.starwarsapp.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.fragments.TheForceViewFragment;
 
-public class TheForceViewActivity extends AppCompatActivity {
+public class TheForceViewActivity extends AppCompatActivity  {
 
     private TheForceViewFragment mFragment;
 
@@ -25,10 +27,10 @@ public class TheForceViewActivity extends AppCompatActivity {
 
 
     // refresh the list after go back
-//    @Override
-//    public void onRestart(){
-//        super.onRestart();
-//        finish();
-//        startActivity(getIntent());
-//    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
 }
