@@ -11,7 +11,7 @@
         were too weak for him... he was the chosen one! The application has a variety of start wars heroes separated
     into two views: Dark Side and The Force heroes. The app also has about application info, and the possibility to create your own
     personal hero...</string>
-    <string name="create_hero">CREATE</string>
+    <string name="create_hero">ADD</string>
     <string name="finish_create">FINISH</string>
     <string name="hero_name">NAME:</string>
     <string name="hero_type">TYPE:</string>

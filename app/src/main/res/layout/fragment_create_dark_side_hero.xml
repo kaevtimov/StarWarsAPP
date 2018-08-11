@@ -12,7 +12,7 @@
         android:scaleType="fitXY"
         android:src="@drawable/deathstar"
         android:layout_width="match_parent"
-        android:layout_height="250dp" />
+        android:layout_height="300dp" />
 
     <TextView
         android:id="@+id/tv_hero_name"
@@ -27,7 +27,7 @@
         android:id="@+id/et_hero_name"
         android:inputType="text"
         android:textColor="@color/colorBlack"
-        android:hint="Enter hero name:"
+        android:hint="  Enter hero name:"
         android:textColorHint="@color/colorGrey"
         android:background="@drawable/edit_text_style"
         android:textColorHighlight="@color/colorGold"
@@ -48,7 +48,7 @@
         android:inputType="text"
         android:textColor="@color/colorBlack"
         android:textColorHint="@color/colorGrey"
-        android:hint="Enter hero type:"
+        android:hint="  Enter hero type:"
         android:background="@drawable/edit_text_style"
         android:textColorHighlight="@color/colorGold"
         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
         android:inputType="text"
         android:textColor="@color/colorBlack"
         android:textColorHint="@color/colorGrey"
-        android:hint="Information about hero:"
+        android:hint="  Information about hero:"
         android:background="@drawable/edit_text_style"
         android:textColorHighlight="@color/colorGold"
         android:layout_width="match_parent"

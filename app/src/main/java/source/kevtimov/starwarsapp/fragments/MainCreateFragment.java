@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.activities.CreateDarkSideHeroActivity;
+import source.kevtimov.starwarsapp.activities.CreateTheForceHeroActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,9 +44,11 @@ public class MainCreateFragment extends Fragment implements View.OnClickListener
         mJediButton = root.findViewById(R.id.btn_jedi_create);
         mJediButton.setText(R.string.create_hero);
         mJediButton.setTextColor(Color.WHITE);
+        mJediButton.setOnClickListener(this);
+
         mSithButton = root.findViewById(R.id.btn_sith_create);
         mSithButton.setText(R.string.create_hero);
-        mSithButton.setTextColor(Color.RED);
+        mSithButton.setTextColor(Color.BLACK);
         mSithButton.setOnClickListener(this);
 
 
@@ -55,8 +58,17 @@ public class MainCreateFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), CreateDarkSideHeroActivity.class);
-        startActivity(intent);
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.btn_jedi_create:
+                Intent intentJedi = new Intent(getActivity(), CreateTheForceHeroActivity.class);
+                startActivity(intentJedi);
+                break;
+            case R.id.btn_sith_create:
+                Intent intentSith = new Intent(getActivity(), CreateDarkSideHeroActivity.class);
+                startActivity(intentSith);
+        }
+
     }
 }

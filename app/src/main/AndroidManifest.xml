@@ -22,7 +22,8 @@
         <activity android:name=".activities.TheForceViewActivity" />
         <activity android:name=".activities.DarkSideViewActivity" />
         <activity android:name=".activities.MainCreateActivity" />
-        <activity android:name=".activities.CreateDarkSideHeroActivity"></activity>
+        <activity android:name=".activities.CreateDarkSideHeroActivity" />
+        <activity android:name=".activities.CreateTheForceHeroActivity"></activity>
     </application>
 
 </manifest>

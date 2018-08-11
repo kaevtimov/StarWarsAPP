@@ -11,29 +11,26 @@
         android:layout_height="match_parent"
         android:contentDescription="TODO"
         android:scaleType="fitXY"
-        android:src="@drawable/vader_vs_luke" />
+        android:src="@drawable/vader_and_son" />
 
     <Button
         android:id="@+id/btn_jedi_create"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:background="@color/colorPrimaryDark"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="475dp"
-        android:textSize="18sp"
+        android:background="@drawable/round_button"
+        android:layout_marginStart="265dp"
+        android:textSize="15sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content" />
 
 
     <Button
         android:id="@+id/btn_sith_create"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:background="@color/colorBlack"
+        android:background="@drawable/round_button_2"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="63dp"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content" />
+
 
 </FrameLayout>
