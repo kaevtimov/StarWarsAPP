@@ -9,5 +9,6 @@
     <color name="colorOrange">#FFA500</color>
     <color name="colorStarWarsBlue">#6495ED</color>
     <color name="colorRed">#B22222</color>
+    <color name="colorGrey">#8B8B83</color>
 
 </resources>
