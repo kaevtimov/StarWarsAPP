@@ -10,13 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import source.kevtimov.starwarsapp.R;
+import source.kevtimov.starwarsapp.models.DarkSideHero;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateDarkSideHeroFragment extends Fragment {
+public class CreateDarkSideHeroFragment extends Fragment implements View.OnClickListener {
 
     private ImageView mImageView;
     private TextView mTextViewName;
@@ -57,6 +59,7 @@ public class CreateDarkSideHeroFragment extends Fragment {
 
         mButtonFinish = root.findViewById(R.id.btn_finish);
         mButtonFinish.setText(R.string.finish_create);
+        mButtonFinish.setOnClickListener(this);
 
 
 
@@ -64,4 +67,18 @@ public class CreateDarkSideHeroFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onClick(View v) {
+        String heroName = mEditTextName.getText().toString();
+        String heroType = mEditTextType.getText().toString();
+        String heroInfo = mEditTextInfo.getText().toString();
+
+        DarkSideHero hero = new DarkSideHero(heroName, heroType, heroInfo);
+
+//        DarkSideViewFragment.getmDarkSideRepository().add(hero,
+//                newSuperhero -> {});
+
+        Toast.makeText(getContext(), "Hero created", Toast.LENGTH_SHORT)
+                .show();
+    }
 }
