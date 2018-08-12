@@ -3,7 +3,6 @@ package source.kevtimov.starwarsapp.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GestureDetectorCompat;
@@ -16,14 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.activities.DarkSideViewActivity;
-import source.kevtimov.starwarsapp.activities.TheForceViewActivity;
 import source.kevtimov.starwarsapp.databaseFirestore.FirebaseRepository;
 import source.kevtimov.starwarsapp.databaseFirestore.Repository;
 import source.kevtimov.starwarsapp.models.TheForceHero;
@@ -35,10 +32,10 @@ public class TheForceViewFragment extends Fragment {
 
 
     private ListView mListView;
-    public static ArrayAdapter<TheForceHero> mAdapterForceHero;       // it is public and static because I want to get it in other class
+    private ArrayAdapter<TheForceHero> mAdapterForceHero;
     private ImageView mImageView;
-//    private FirebaseFirestore mDb;
-//    private Repository<TheForceHero> mTheForceRepository;
+    //private FirebaseFirestore mDb;
+    private static Repository<TheForceHero> mTheForceRepository;
 
     public TheForceViewFragment() {
         // Required empty public constructor
@@ -57,6 +54,7 @@ public class TheForceViewFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_the_force_view, container, false);
 
         //mDb = FirebaseFirestore.getInstance();
+
         mListView = root.findViewById(R.id.lv_theforce);
         mAdapterForceHero = new ArrayAdapter<>(getContext(), android.R.layout.simple_expandable_list_item_1);
         mListView.setAdapter(mAdapterForceHero);
@@ -85,17 +83,18 @@ public class TheForceViewFragment extends Fragment {
 
         loadAdapter();
 
-        //mTheForceRepository = new FirebaseRepository<>(TheForceHero.class);
+        mTheForceRepository = new FirebaseRepository<>(TheForceHero.class);
 
-//        mTheForceRepository.add(new TheForceHero("Lea", "Rebel", "Luke sister"),
+//        mTheForceRepository.add(new TheForceHero("Koko", "Rebel", "Luke sister"),
 //                newHero -> {});
 //
 //
 //        mTheForceRepository.getAll(theForceHeroes -> {
 //            for (TheForceHero hero : theForceHeroes) {
-//                mAdapter.add(hero);
+//                mAdapterForceHero.add(hero);
 //            }
 //        });
+
 
 //        mTheForceRepository.add(new TheForceHero("Jaba", "Businessman", "Gambler and a lizard"),
 //                newHero -> mTheForceRepository.getAll(theForceHeroes -> {
@@ -125,6 +124,10 @@ public class TheForceViewFragment extends Fragment {
 //                });
 
         return root;
+    }
+
+    public static Repository<TheForceHero> getmTheForceRepository() {
+        return mTheForceRepository;
     }
 
     private void loadAdapter() {

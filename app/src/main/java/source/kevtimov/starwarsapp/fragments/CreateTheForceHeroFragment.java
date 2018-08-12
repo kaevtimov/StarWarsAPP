@@ -10,13 +10,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import source.kevtimov.starwarsapp.R;
+import source.kevtimov.starwarsapp.databaseFirestore.FirebaseRepository;
+import source.kevtimov.starwarsapp.databaseFirestore.Repository;
+import source.kevtimov.starwarsapp.models.TheForceHero;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateTheForceHeroFragment extends Fragment {
+public class CreateTheForceHeroFragment extends Fragment implements View.OnClickListener {
 
     private ImageView mImageView;
     private TextView mTextViewName;
@@ -26,6 +30,7 @@ public class CreateTheForceHeroFragment extends Fragment {
     private EditText mEditTextType;
     private EditText mEditTextInfo;
     private Button mButtonFinish;
+    private Repository<TheForceHero> mSuperheroRepository;
 
 
     public CreateTheForceHeroFragment() {
@@ -58,10 +63,25 @@ public class CreateTheForceHeroFragment extends Fragment {
 
         mButtonFinish = root.findViewById(R.id.btn_finish);
         mButtonFinish.setText(R.string.finish_create);
+        mButtonFinish.setOnClickListener(this);
 
 
 
         return root;
     }
 
+    @Override
+    public void onClick(View v) {
+
+        String heroName = mEditTextName.getText().toString();
+        String heroType = mEditTextType.getText().toString();
+        String heroInfo = mEditTextInfo.getText().toString();
+
+        TheForceHero hero = new TheForceHero(heroName, heroType, heroInfo);
+        //TheForceViewFragment.getmTheForceRepository().add(hero, newSuperhero -> {});
+
+
+        Toast.makeText(getContext(), "Hero created", Toast.LENGTH_SHORT)
+                .show();
+    }
 }

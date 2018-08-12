@@ -15,11 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Objects;
 
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.activities.DarkSideViewActivity;
 import source.kevtimov.starwarsapp.activities.TheForceViewActivity;
+import source.kevtimov.starwarsapp.databaseFirestore.FirebaseRepository;
+import source.kevtimov.starwarsapp.databaseFirestore.Repository;
 import source.kevtimov.starwarsapp.models.DarkSideHero;
 
 /**
@@ -27,11 +31,11 @@ import source.kevtimov.starwarsapp.models.DarkSideHero;
  */
 public class DarkSideViewFragment extends Fragment {
 
-    public static ArrayAdapter<DarkSideHero> mAdapterDarkSide;         // it is public and static because I want to get it in other class
+    private ArrayAdapter<DarkSideHero> mAdapterDarkSide;
     private ListView mListView;
     private ImageView mImageView;
-//    private FirebaseFirestore mDb;
-//    private Repository<TheForceHero> mTheForceRepository;
+    //private FirebaseFirestore mDb;
+    private static Repository<DarkSideHero> mDarkSideRepository;
 
 
     public DarkSideViewFragment() {
@@ -75,16 +79,18 @@ public class DarkSideViewFragment extends Fragment {
         mAdapterDarkSide = new ArrayAdapter<>(getContext(), android.R.layout.simple_expandable_list_item_1);
         mListView.setAdapter(mAdapterDarkSide);
 
+        mDarkSideRepository = new FirebaseRepository<>(DarkSideHero.class);
+
 
         //mDb = FirebaseFirestore.getInstance();
 
-        //        mTheForceRepository.add(new TheForceHero("Lea", "Rebel", "Luke sister"),
+        //        mDarkSideRepository.add(new DarkSideHero("Darth Vader", "Sith", "Luke father"),
 //                newHero -> {});
 //
 //
-//        mTheForceRepository.getAll(theForceHeroes -> {
-//            for (TheForceHero hero : theForceHeroes) {
-//                mAdapter.add(hero);
+//        mDarkSideRepository.getAll(darkSideHeroes -> {
+//            for (DarkSideHero hero : darkSideHeroes) {
+//                mAdapterDarkSide.add(hero);
 //            }
 //        });
 
@@ -121,6 +127,10 @@ public class DarkSideViewFragment extends Fragment {
 
 
         return root;
+    }
+
+    public static Repository<DarkSideHero> getmDarkSideRepository() {
+        return mDarkSideRepository;
     }
 
     private void loadAdapter() {
