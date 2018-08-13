@@ -16,6 +16,7 @@
     <string name="hero_name">NAME:</string>
     <string name="hero_type">TYPE:</string>
     <string name="hero_info">Hero information:</string>
+    <string name="hero_points">Hero points:</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_jedi_view">JediViewActivity</string>

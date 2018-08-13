@@ -1,37 +1,28 @@
 package source.kevtimov.starwarsapp.models;
 
-public class TheForceHero {
+import java.io.Serializable;
 
+public class TheForceHero extends Hero implements Serializable{
 
-    public String name;
-    public String type;
-    public String info;
+    public int theForcePower;
 
     public TheForceHero(){
-        //default
+    //default
     }
 
-    public TheForceHero(String name, String type, String info){
-        this.name = name;
-        this.type = type;
-        this.info = info;
+    public TheForceHero(String name, String type, String info, int theForcePower) {
+        super(name, type, info);
+        this.theForcePower = theForcePower;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getInfo() {
-        return info;
-    }
 
 
     @Override
     public String toString(){
         return String.format("%s", getName());
+    }
+
+    public int getTheForcePower() {
+        return theForcePower;
     }
 }

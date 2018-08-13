@@ -1,31 +1,22 @@
 package source.kevtimov.starwarsapp.models;
 
-public class DarkSideHero {
-    public String name;
-    public String type;
-    public String info;
+import java.io.Serializable;
+
+public class DarkSideHero extends Hero implements Serializable{
+
+    public int darkSideAnger;
 
     public DarkSideHero(){
         //default
     }
 
-    public DarkSideHero(String name, String type, String info){
-        this.name = name;
-        this.type = type;
-        this.info = info;
+    public DarkSideHero(String name, String type, String info, int darkSideAnger) {
+        super(name, type, info);
+        this.darkSideAnger = darkSideAnger;
     }
 
-
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getInfo() {
-        return info;
+    public int getDarkSideAnger() {
+        return darkSideAnger;
     }
 
     @Override

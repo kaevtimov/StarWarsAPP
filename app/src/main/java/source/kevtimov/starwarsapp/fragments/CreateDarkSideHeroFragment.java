@@ -24,9 +24,11 @@ public class CreateDarkSideHeroFragment extends Fragment implements View.OnClick
     private TextView mTextViewName;
     private TextView mTextViewType;
     private TextView mTextViewInfo;
+    private TextView mTextViewPoints;
     private EditText mEditTextName;
     private EditText mEditTextType;
     private EditText mEditTextInfo;
+    private EditText mEditTextPoints;
     private Button mButtonFinish;
 
     public CreateDarkSideHeroFragment() {
@@ -52,10 +54,13 @@ public class CreateDarkSideHeroFragment extends Fragment implements View.OnClick
         mTextViewType.setText(R.string.hero_type);
         mTextViewInfo = root.findViewById(R.id.tv_hero_info);
         mTextViewInfo.setText(R.string.hero_info);
+        mTextViewPoints = root.findViewById(R.id.tv_hero_points);
+        mTextViewPoints.setText(R.string.hero_points);
 
         mEditTextName = root.findViewById(R.id.et_hero_name);
         mEditTextType = root.findViewById(R.id.et_hero_type);
         mEditTextInfo = root.findViewById(R.id.et_hero_info);
+        mEditTextPoints = root.findViewById(R.id.et_hero_points);
 
         mButtonFinish = root.findViewById(R.id.btn_finish);
         mButtonFinish.setText(R.string.finish_create);
@@ -72,8 +77,9 @@ public class CreateDarkSideHeroFragment extends Fragment implements View.OnClick
         String heroName = mEditTextName.getText().toString();
         String heroType = mEditTextType.getText().toString();
         String heroInfo = mEditTextInfo.getText().toString();
+        int heroPoints = Integer.parseInt(mEditTextPoints.getText().toString());
 
-        DarkSideHero hero = new DarkSideHero(heroName, heroType, heroInfo);
+        DarkSideHero hero = new DarkSideHero(heroName, heroType, heroInfo, heroPoints);
 
 //        DarkSideViewFragment.getmDarkSideRepository().add(hero,
 //                newSuperhero -> {});

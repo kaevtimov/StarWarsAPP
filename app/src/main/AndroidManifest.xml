@@ -23,7 +23,8 @@
         <activity android:name=".activities.DarkSideViewActivity" />
         <activity android:name=".activities.MainCreateActivity" />
         <activity android:name=".activities.CreateDarkSideHeroActivity" />
-        <activity android:name=".activities.CreateTheForceHeroActivity"></activity>
+        <activity android:name=".activities.CreateTheForceHeroActivity" />
+        <activity android:name=".activities.ShowHeroActivity"></activity>
     </application>
 
 </manifest>
