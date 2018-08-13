@@ -10,8 +10,8 @@ public class DarkSideHero extends Hero implements Serializable{
         //default
     }
 
-    public DarkSideHero(String name, String type, String info, int darkSideAnger) {
-        super(name, type, info);
+    public DarkSideHero(String name, String type, String info, int heroImage, int darkSideAnger) {
+        super(name, type, info, heroImage);
         this.darkSideAnger = darkSideAnger;
     }
 

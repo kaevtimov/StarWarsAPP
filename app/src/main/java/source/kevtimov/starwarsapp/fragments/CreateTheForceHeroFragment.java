@@ -83,7 +83,7 @@ public class CreateTheForceHeroFragment extends Fragment implements View.OnClick
         String heroInfo = mEditTextInfo.getText().toString();
         int heroPoints = Integer.parseInt(mEditTextPoints.getText().toString());
 
-        TheForceHero hero = new TheForceHero(heroName, heroType, heroInfo, heroPoints);
+        //TheForceHero hero = new TheForceHero(heroName, heroType, heroInfo, heroPoints);
         //TheForceViewFragment.getmTheForceRepository().add(hero, newSuperhero -> {});
 
 

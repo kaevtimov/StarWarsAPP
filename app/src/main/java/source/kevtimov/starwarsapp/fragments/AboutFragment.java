@@ -45,7 +45,7 @@ public class AboutFragment extends Fragment {
 
         mTextView2 = root.findViewById(R.id.tv_about_2);
         mTextView2.setText(R.string.about_info_2);
-        //mTextView2.setMovementMethod(ScrollingMovementMethod.getInstance());
+        //mTextView2.setMovementMethod(new ScrollingMovementMethod());
 
 
         return root;

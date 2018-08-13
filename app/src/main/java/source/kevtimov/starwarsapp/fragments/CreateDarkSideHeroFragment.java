@@ -79,7 +79,7 @@ public class CreateDarkSideHeroFragment extends Fragment implements View.OnClick
         String heroInfo = mEditTextInfo.getText().toString();
         int heroPoints = Integer.parseInt(mEditTextPoints.getText().toString());
 
-        DarkSideHero hero = new DarkSideHero(heroName, heroType, heroInfo, heroPoints);
+        //DarkSideHero hero = new DarkSideHero(heroName, heroType, heroInfo, heroPoints);
 
 //        DarkSideViewFragment.getmDarkSideRepository().add(hero,
 //                newSuperhero -> {});

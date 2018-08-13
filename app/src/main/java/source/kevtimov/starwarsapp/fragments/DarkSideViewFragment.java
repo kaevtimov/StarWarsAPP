@@ -140,39 +140,39 @@ public class DarkSideViewFragment extends Fragment implements AdapterView.OnItem
                 "Anakin Skywalker had the potential to become one of the most powerful Jedi ever, " +
                 "and was believed by some to be the prophesied Chosen One who would bring balance to the Force." +
                 "A hero of the Clone Wars, Anakin was caring and compassionate, " +
-                "but also had a fear of loss that would prove to be his downfall.", 150));
+                "but also had a fear of loss that would prove to be his downfall.", R.drawable.darthvader_card,150));
         mAdapterDarkSide.add(new DarkSideHero("Darth Sidious", "Sith lord", "Scheming, powerful, and evil to the core, " +
                 "Darth Sidious restored the Sith and destroyed the Jedi Order. " +
                 "Living a double life, Sidious was in fact Palpatine, " +
                 "a Naboo Senator and phantom menace. He slowly manipulated " +
                 "the political system of the Galactic Republic until he was named Supreme Chancellor " +
-                "-- and eventually Emperor -- ruling the galaxy through fear and tyranny.", 150));
+                "-- and eventually Emperor -- ruling the galaxy through fear and tyranny.", R.drawable.sidious_card,150));
         mAdapterDarkSide.add(new DarkSideHero("Count Dooku", "Sith lord", "Count Dooku was a menacing Sith Lord and central figure in the Clone Wars. " +
                 "Once a Jedi -- trained by Yoda -- he became disillusioned with the Jedi Order and thirsted for greater power. " +
                 "Dooku voluntarily left the light side behind and became Darth Sidious’ dark side disciple, taking the secret name Darth Tyranus and leading" +
-                " the Separatist army. Dooku advanced Sidious’s secret plot to take over the galaxy, but forgot that betrayal is the nature of the Sith.", 100));
+                " the Separatist army. Dooku advanced Sidious’s secret plot to take over the galaxy, but forgot that betrayal is the nature of the Sith.", R.drawable.countdooku_card,100));
         mAdapterDarkSide.add(new DarkSideHero("Darth Maul", "Sith lord", "A deadly, agile Sith Lord trained by the evil Darth Sidious, Darth Maul was a " +
                 "formidable warrior and scheming mastermind. He wielded an intimidating double-bladed lightsaber and fought with a menacing ferocity." +
-                " Though he fell in battle against Obi-Wan Kenobi, the Zabrak from Dathomir would prove to be much harder to destroy than originally believed.", 115));
+                " Though he fell in battle against Obi-Wan Kenobi, the Zabrak from Dathomir would prove to be much harder to destroy than originally believed.", R.drawable.dathmaul_card,115));
         mAdapterDarkSide.add(new DarkSideHero("Boba Fett", "Headhunter", "With his customized Mandalorian armor, deadly weaponry, and silent demeanor," +
                 " Boba Fett was one of the most feared bounty hunters in the galaxy." +
                 "A genetic clone of his “father,” bounty hunter Jango Fett, Boba learned combat and martial skills from a young age. Over the course of his career, " +
-                "which included contracts for the Empire and the criminal underworld, he became a legend.", 75));
+                "which included contracts for the Empire and the criminal underworld, he became a legend.", R.drawable.boba_fett_card,75));
         mAdapterDarkSide.add(new DarkSideHero("Jabba the Hutt", "Gangster", "Jabba the Hutt was one of the galaxy’s most powerful gangsters, with far-reaching " +
                 "influence in both politics and the criminal underworld. There were no second chances with Jabba, something Han Solo would find out -- " +
-                "though the slug-like alien would ultimately fall victim to his own hubris and vengeful ways.", 55));
+                "though the slug-like alien would ultimately fall victim to his own hubris and vengeful ways.", R.drawable.jabba_card,55));
         mAdapterDarkSide.add(new DarkSideHero("General Griveous", "Jedi hunter", "General Grievous was a brilliant Separatist military strategist and a feared Jedi hunter, known for his ruthlessness " +
                 "and hacking cough. His body itself was a weapon, allowing him lightning quick strikes and devastating blows. " +
-                "But he was also quick to run from a fight, a tactic that worked until one final meeting with Obi-Wan Kenobi.", 95));
+                "But he was also quick to run from a fight, a tactic that worked until one final meeting with Obi-Wan Kenobi.", R.drawable.griveus_card,95));
         mAdapterDarkSide.add(new DarkSideHero("Mas Amedda", "Vice Chair of the Galactic Senate", "Mas Amedda was the Vice Chair of the Galactic Senate during Chancellor Valorum's term, " +
                 "a position he continued to hold as Chancellor Palpatine transformed the Republic into the Galactic Empire. " +
                 "Amedda's booming voice often called for order when the partisan nature of the Republic's government degenerated into pointless bickering." +
-                " In an alien gesture of authority, he would often punctuate such calls with a flicker of his long, forked tongue.", 75));
+                " In an alien gesture of authority, he would often punctuate such calls with a flicker of his long, forked tongue.", R.drawable.amedda_card,75));
         mAdapterDarkSide.add(new DarkSideHero("Grand Moff Tarkin", "Grand Moff", "An ambitious, ruthless proponent of military power, Wilhuff Tarkin became a favorite of Supreme Chancellor Palpatine and " +
                 "rose rapidly through the Imperial ranks. Shortly after the Empire's creation, he was put in charge of the construction of the Death Star. " +
                 " saw the Death Star as a way to crush all dissent to the Empire's rule -- fear of the station's" +
                 " planet-killing superlaser would keep the galaxy's star systems in line. He demonstrated the station's power" +
-                " by destroying Alderaan, but died soon afterwards when the Death Star itself was destroyed.", 65));
+                " by destroying Alderaan, but died soon afterwards when the Death Star itself was destroyed.", R.drawable.tarkin_card,65));
     }
 
     @Override
