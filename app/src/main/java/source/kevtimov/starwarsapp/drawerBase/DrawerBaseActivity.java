@@ -15,6 +15,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.activities.AboutActivity;
+import source.kevtimov.starwarsapp.activities.AskYodaActivity;
 import source.kevtimov.starwarsapp.activities.MainChooseViewActivity;
 import source.kevtimov.starwarsapp.activities.MainCreateActivity;
 
@@ -26,6 +27,7 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
                 .withTextColor(Color.WHITE)
                 .withSelectedTextColor(Color.BLACK)
                 .withIcon(R.drawable.vader_logo)
+                //.withSelectedColor()
                 .withName("View heroes");
 
         PrimaryDrawerItem createSuperheroItem = new PrimaryDrawerItem()
@@ -34,6 +36,14 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
                 .withSelectedTextColor(Color.BLACK)
                 .withIcon(android.R.drawable.ic_input_add)
                 .withName("Create superhero");
+
+        PrimaryDrawerItem askYoda = new PrimaryDrawerItem()
+                .withIdentifier(AskYodaActivity.IDENTIFIER)
+                .withTextColor(Color.WHITE)
+                .withSelectedTextColor(Color.BLACK)
+                .withIcon(R.drawable.yoda_icon)
+                .withSelectedColor(Color.GREEN)
+                .withName("Ask master Yoda");
 
         PrimaryDrawerItem aboutApp = new PrimaryDrawerItem()
                 .withIdentifier(AboutActivity.IDENTIFIER)
@@ -56,6 +66,8 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
                         viewHeroes,
                         new DividerDrawerItem(),
                         createSuperheroItem,
+                        new DividerDrawerItem(),
+                        askYoda,
                         new DividerDrawerItem(),
                         aboutApp
                 )
@@ -97,6 +109,8 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
             return new Intent(DrawerBaseActivity.this, MainChooseViewActivity.class);
         }else if(identifier == MainCreateActivity.IDENTIFIER){
             return new Intent(DrawerBaseActivity.this, MainCreateActivity.class);
+        }else if(identifier == AskYodaActivity.IDENTIFIER){
+            return new Intent (DrawerBaseActivity.this, AskYodaActivity.class);
         }
         return null;
     }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AskYodaFragment">
+
+    <ImageView
+        android:id="@+id/iv_yoda"
+        android:src="@drawable/yoda_logo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:contentDescription="TODO" />
+
+    <TextView
+        android:id="@+id/tv_answer"
+        android:layout_width="300dp"
+        android:layout_height="219dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/background_circle_text"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/et_ask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="190dp"
+        android:background="@drawable/edit_text_style_2"
+        android:gravity="center_horizontal"
+        android:hint="  Ask a question:"
+        android:inputType="text"
+        android:textColor="@color/colorBlack"
+        android:textColorHighlight="@color/md_green_A400"
+        android:textColorHint="@color/colorGrey" />
+
+    <Button
+        android:id="@+id/btn_ask_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="236dp" />
+
+    <Button
+        android:id="@+id/btn_advise"
+        android:layout_marginTop="475dp"
+        android:layout_marginStart="255dp"
+        android:background="@drawable/button_yoda_ask"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_question"
+        android:layout_marginTop="475dp"
+        android:layout_marginStart="22dp"
+        android:background="@drawable/button_yoda_ask"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

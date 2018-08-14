@@ -20,5 +20,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_jedi_view">JediViewActivity</string>
+    <string name="yoda_advise">ADVISE</string>
+    <string name="yoda_ask">ASK</string>
 
 </resources>
