@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.fragments.ShowHeroFragment;
-import source.kevtimov.starwarsapp.models.Hero;
+import source.kevtimov.starwarsapp.models.heroes.Hero;
 
 public class ShowHeroActivity extends AppCompatActivity {
 

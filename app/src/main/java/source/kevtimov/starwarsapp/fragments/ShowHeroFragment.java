@@ -8,12 +8,11 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import source.kevtimov.starwarsapp.R;
-import source.kevtimov.starwarsapp.models.Hero;
+import source.kevtimov.starwarsapp.models.heroes.Hero;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -17,16 +17,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.activities.DarkSideViewActivity;
 import source.kevtimov.starwarsapp.activities.ShowHeroActivity;
-import source.kevtimov.starwarsapp.databaseFirestore.FirebaseRepository;
-import source.kevtimov.starwarsapp.databaseFirestore.Repository;
-import source.kevtimov.starwarsapp.models.TheForceHero;
+import source.kevtimov.starwarsapp.models.heroes.TheForceHero;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -13,9 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import source.kevtimov.starwarsapp.R;
-import source.kevtimov.starwarsapp.databaseFirestore.FirebaseRepository;
-import source.kevtimov.starwarsapp.databaseFirestore.Repository;
-import source.kevtimov.starwarsapp.models.TheForceHero;
 
 /**
  * A simple {@link Fragment} subclass.

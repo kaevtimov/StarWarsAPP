@@ -16,18 +16,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.io.Serializable;
 import java.util.Objects;
 
 import source.kevtimov.starwarsapp.R;
-import source.kevtimov.starwarsapp.activities.DarkSideViewActivity;
 import source.kevtimov.starwarsapp.activities.ShowHeroActivity;
 import source.kevtimov.starwarsapp.activities.TheForceViewActivity;
-import source.kevtimov.starwarsapp.databaseFirestore.FirebaseRepository;
-import source.kevtimov.starwarsapp.databaseFirestore.Repository;
-import source.kevtimov.starwarsapp.models.DarkSideHero;
+import source.kevtimov.starwarsapp.models.heroes.DarkSideHero;
 
 /**
  * A simple {@link Fragment} subclass.

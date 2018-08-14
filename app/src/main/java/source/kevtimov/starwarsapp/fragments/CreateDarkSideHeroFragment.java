@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import source.kevtimov.starwarsapp.R;
-import source.kevtimov.starwarsapp.models.DarkSideHero;
 
 /**
  * A simple {@link Fragment} subclass.

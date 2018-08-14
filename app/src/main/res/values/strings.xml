@@ -22,5 +22,6 @@
     <string name="title_activity_jedi_view">JediViewActivity</string>
     <string name="yoda_advise">ADVISE</string>
     <string name="yoda_ask">ASK</string>
+    <string name="player_name">Player name:</string>
 
 </resources>

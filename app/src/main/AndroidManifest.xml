@@ -27,7 +27,8 @@
         <activity android:name=".activities.CreateDarkSideHeroActivity" />
         <activity android:name=".activities.CreateTheForceHeroActivity" />
         <activity android:name=".activities.ShowHeroActivity" />
-        <activity android:name=".activities.AskYodaActivity"></activity>
+        <activity android:name=".activities.AskYodaActivity" />
+        <activity android:name=".activities.QuizActivity"></activity>
     </application>
 
 </manifest>
