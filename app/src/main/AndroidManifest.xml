@@ -28,7 +28,8 @@
         <activity android:name=".activities.CreateTheForceHeroActivity" />
         <activity android:name=".activities.ShowHeroActivity" />
         <activity android:name=".activities.AskYodaActivity" />
-        <activity android:name=".activities.QuizActivity"></activity>
+        <activity android:name=".activities.QuizActivity" />
+        <activity android:name=".activities.LightsaberActivity"></activity>
     </application>
 
 </manifest>

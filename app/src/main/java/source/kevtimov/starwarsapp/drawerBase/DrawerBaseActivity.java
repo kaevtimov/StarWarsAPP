@@ -16,6 +16,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.activities.AboutActivity;
 import source.kevtimov.starwarsapp.activities.AskYodaActivity;
+import source.kevtimov.starwarsapp.activities.LightsaberActivity;
 import source.kevtimov.starwarsapp.activities.MainChooseViewActivity;
 import source.kevtimov.starwarsapp.activities.MainCreateActivity;
 import source.kevtimov.starwarsapp.activities.QuizActivity;
@@ -52,6 +53,13 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
                 .withSelectedColor(Color.GREEN)
                 .withName("Ask master Yoda");
 
+        PrimaryDrawerItem lightsaber = new PrimaryDrawerItem()
+                .withIdentifier(LightsaberActivity.IDENTIFIER)
+                .withTextColor(Color.WHITE)
+                .withSelectedTextColor(Color.BLACK)
+                .withIcon(R.drawable.common_google_signin_btn_text_dark_focused)
+                .withName("Lightsaber");
+
         PrimaryDrawerItem aboutApp = new PrimaryDrawerItem()
                 .withIdentifier(AboutActivity.IDENTIFIER)
                 .withTextColor(Color.WHITE)
@@ -77,6 +85,8 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
                         quiz,
                         new DividerDrawerItem(),
                         askYoda,
+                        new DividerDrawerItem(),
+                        lightsaber,
                         new DividerDrawerItem(),
                         aboutApp
                 )
@@ -122,6 +132,8 @@ public abstract class DrawerBaseActivity extends AppCompatActivity {
             return new Intent (DrawerBaseActivity.this, AskYodaActivity.class);
         }else if(identifier == QuizActivity.IDENTIFIER){
             return new Intent(DrawerBaseActivity.this, QuizActivity.class);
+        }else if(identifier == LightsaberActivity.IDENTIFIER){
+            return new Intent(DrawerBaseActivity.this, LightsaberActivity.class);
         }
         return null;
     }
