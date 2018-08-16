@@ -10,7 +10,7 @@ public class TheForceHero extends Hero implements Serializable{
     //default
     }
 
-    public TheForceHero(String name, String type, String info, int heroImage, int theForcePower) {
+    public TheForceHero(String name, String type, String info, String heroImage, int theForcePower) {
         super(name, type, info, heroImage);
         this.theForcePower = theForcePower;
     }

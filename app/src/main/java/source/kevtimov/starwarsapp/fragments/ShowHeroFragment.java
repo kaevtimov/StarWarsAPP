@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import source.kevtimov.starwarsapp.R;
 import source.kevtimov.starwarsapp.models.heroes.Hero;
@@ -40,7 +42,9 @@ public class ShowHeroFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_show_hero, container, false);
 
         mImageView = root.findViewById(R.id.profile_image);
-        mImageView.setImageResource(mHero.getHeroImage());
+        Picasso.get()
+                .load(mHero.getHeroImage())
+                .into(mImageView);
 
         mTextView = root.findViewById(R.id.tv_hero);
         mTextView.setText("NAME:\n" + mHero.getName() + "\n\n"

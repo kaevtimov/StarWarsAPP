@@ -6,20 +6,20 @@ public abstract class Hero implements Serializable{
     public String name;
     public String type;
     public String info;
-    public int heroImage;
+    public String heroImage;
 
     public Hero(){
         //default
     }
 
-    public Hero(String name, String type, String info, int heroImage){
+    public Hero(String name, String type, String info, String heroImage){
         this.name = name;
         this.type = type;
         this.info = info;
         this.heroImage = heroImage;
     }
 
-    public int getHeroImage() {
+    public String getHeroImage() {
         return heroImage;
     }
 
