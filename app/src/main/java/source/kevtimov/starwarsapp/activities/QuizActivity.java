@@ -44,6 +44,12 @@ public class QuizActivity extends DrawerBaseActivity {
 
         mMP = MediaPlayer.create(this, R.raw.cantina_song);
 
-        //mMP.start();
+        mMP.start();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        mMP.stop();
     }
 }
