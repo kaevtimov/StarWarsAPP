@@ -13,10 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import source.kevtimov.starwarsapp.R;
+import source.kevtimov.starwarsapp.databaseFirestore.FirebaseRepository;
+import source.kevtimov.starwarsapp.databaseFirestore.Repository;
 import source.kevtimov.starwarsapp.models.questions.Player;
-import source.kevtimov.starwarsapp.models.questions.QueastionDatabase;
+import source.kevtimov.starwarsapp.models.questions.Question;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +32,8 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
     private TextView mTextViewName;
     private EditText mEditTextName;
     private Button mButtonBegin;
-    private QueastionDatabase mDatabase;
+    private Repository<Question> mQuestionRepository;
+    private List<Question> mListQuestions;
     private Button mButtonAnswer1;
     private Button mButtonAnswer2;
     private Button mButtonAnswer3;
@@ -52,6 +56,13 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+        mQuestionRepository = new FirebaseRepository<>(Question.class);
+        mListQuestions = new ArrayList<>();
+
+        mQuestionRepository.getAll(theQuestions -> {
+            mListQuestions.addAll(theQuestions);
+        });
 
         mImageViewBg = root.findViewById(R.id.iv_quiz_bg);
         mImageViewLogo = root.findViewById(R.id.iv_quiz_show);
@@ -92,8 +103,6 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         String playerName = mEditTextName.getText().toString();
         mPlayer = new Player(playerName, 0);
-        mDatabase = new QueastionDatabase(new ArrayList<>());
-        mDatabase.loadDatabase();
 
         mTextViewQuestNumber.setVisibility(View.VISIBLE);
         mTextViewQuestNumber.setText("1/10");
@@ -104,26 +113,20 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
         mEditTextName.setVisibility(View.GONE);
 
         mTextViewQuestion.setVisibility(View.VISIBLE);
-        mTextViewQuestion.setText(mDatabase.getQuestions().get(0).getQuestion());
+        mTextViewQuestion.setText(mListQuestions.get(0).getQuestion());
 
         mButtonAnswer1.setVisibility(View.VISIBLE);
-        mButtonAnswer1.setText(mDatabase
-                .getQuestions()
+        mButtonAnswer1.setText(mListQuestions
                 .get(0)
-                .getAnswers()
-                .get(0));
+                .getAnswer1());
         mButtonAnswer2.setVisibility(View.VISIBLE);
-        mButtonAnswer2.setText(mDatabase
-                .getQuestions()
+        mButtonAnswer2.setText(mListQuestions
                 .get(0)
-                .getAnswers()
-                .get(1));
+                .getAnswer2());
         mButtonAnswer3.setVisibility(View.VISIBLE);
-        mButtonAnswer3.setText(mDatabase
-                .getQuestions()
+        mButtonAnswer3.setText(mListQuestions
                 .get(0)
-                .getAnswers()
-                .get(2));
+                .getAnswer3());
 
         mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,25 +156,59 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                         .show();
                 mPlayer.setPoints(mPlayer.getPoints()+5);
                 mTextViewQuestNumber.setText("2/10");
-                mTextViewQuestion.setText(mDatabase.getQuestions().get(1).getQuestion());
+                mTextViewQuestion.setText(mListQuestions.get(1).getQuestion());
 
-                mButtonAnswer1.setText(mDatabase
-                        .getQuestions()
+                mButtonAnswer1.setText(mListQuestions
                         .get(1)
-                        .getAnswers()
-                        .get(0));
-                mButtonAnswer2.setText(mDatabase
-                        .getQuestions()
+                        .getAnswer1());
+                mButtonAnswer2.setText(mListQuestions
                         .get(1)
-                        .getAnswers()
-                        .get(1));
-                mButtonAnswer3.setText(mDatabase
-                        .getQuestions()
+                        .getAnswer2());
+                mButtonAnswer3.setText(mListQuestions
                         .get(1)
-                        .getAnswers()
-                        .get(2));
+                        .getAnswer3());
 
                 mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //fail
+                        mTextViewQuestNumber.setVisibility(View.GONE);
+                        mTextViewQuestion.setVisibility(View.GONE);
+                        mButtonAnswer1.setVisibility(View.GONE);
+                        mButtonAnswer2.setVisibility(View.GONE);
+                        mButtonAnswer3.setVisibility(View.GONE);
+                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                .show();
+
+                        mTextViewFinal.setVisibility(View.VISIBLE);
+                        mTextViewFinal.setText("Sorry! Try again...\n"
+                                + "Payer name: " + mPlayer.getName() + "\n"
+                                + "Points: " + mPlayer.getPoints() + "/50");
+                        mTextViewFinal.setTextSize(26);
+                    }
+                });
+
+                mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //fail
+                        mTextViewQuestNumber.setVisibility(View.GONE);
+                        mTextViewQuestion.setVisibility(View.GONE);
+                        mButtonAnswer1.setVisibility(View.GONE);
+                        mButtonAnswer2.setVisibility(View.GONE);
+                        mButtonAnswer3.setVisibility(View.GONE);
+                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                .show();
+
+                        mTextViewFinal.setVisibility(View.VISIBLE);
+                        mTextViewFinal.setText("Sorry! Try again...\n"
+                                + "Payer name: " + mPlayer.getName() + "\n"
+                                + "Points: " + mPlayer.getPoints() + "/50");
+                        mTextViewFinal.setTextSize(26);
+                    }
+                });
+
+                mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //continue
@@ -179,23 +216,17 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                 .show();
                         mPlayer.setPoints(mPlayer.getPoints()+5);
                         mTextViewQuestNumber.setText("3/10");
-                        mTextViewQuestion.setText(mDatabase.getQuestions().get(2).getQuestion());
+                        mTextViewQuestion.setText(mListQuestions.get(2).getQuestion());
 
-                        mButtonAnswer1.setText(mDatabase
-                                .getQuestions()
+                        mButtonAnswer1.setText(mListQuestions
                                 .get(2)
-                                .getAnswers()
-                                .get(0));
-                        mButtonAnswer2.setText(mDatabase
-                                .getQuestions()
+                                .getAnswer1());
+                        mButtonAnswer2.setText(mListQuestions
                                 .get(2)
-                                .getAnswers()
-                                .get(1));
-                        mButtonAnswer3.setText(mDatabase
-                                .getQuestions()
+                                .getAnswer2());
+                        mButtonAnswer3.setText(mListQuestions
                                 .get(2)
-                                .getAnswers()
-                                .get(2));
+                                .getAnswer3());
 
                         mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -219,28 +250,41 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                         mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                //fail
+                                mTextViewQuestNumber.setVisibility(View.GONE);
+                                mTextViewQuestion.setVisibility(View.GONE);
+                                mButtonAnswer1.setVisibility(View.GONE);
+                                mButtonAnswer2.setVisibility(View.GONE);
+                                mButtonAnswer3.setVisibility(View.GONE);
+                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                        .show();
+
+                                mTextViewFinal.setVisibility(View.VISIBLE);
+                                mTextViewFinal.setText("Sorry! Try again...\n"
+                                        + "Payer name: " + mPlayer.getName() + "\n"
+                                        + "Points: " + mPlayer.getPoints() + "/50");
+                                mTextViewFinal.setTextSize(26);
+                            }
+                        });
+                        mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
                                 //continue
                                 Toast.makeText(getContext(), "Correct!", Toast.LENGTH_SHORT)
                                         .show();
                                 mPlayer.setPoints(mPlayer.getPoints()+5);
                                 mTextViewQuestNumber.setText("4/10");
-                                mTextViewQuestion.setText(mDatabase.getQuestions().get(3).getQuestion());
+                                mTextViewQuestion.setText(mListQuestions.get(3).getQuestion());
 
-                                mButtonAnswer1.setText(mDatabase
-                                        .getQuestions()
+                                mButtonAnswer1.setText(mListQuestions
                                         .get(3)
-                                        .getAnswers()
-                                        .get(0));
-                                mButtonAnswer2.setText(mDatabase
-                                        .getQuestions()
+                                        .getAnswer1());
+                                mButtonAnswer2.setText(mListQuestions
                                         .get(3)
-                                        .getAnswers()
-                                        .get(1));
-                                mButtonAnswer3.setText(mDatabase
-                                        .getQuestions()
+                                        .getAnswer2());
+                                mButtonAnswer3.setText(mListQuestions
                                         .get(3)
-                                        .getAnswers()
-                                        .get(2));
+                                        .getAnswer3());
 
                                 mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -264,87 +308,24 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                 mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        //fail
-                                        mTextViewQuestNumber.setVisibility(View.GONE);
-                                        mTextViewQuestion.setVisibility(View.GONE);
-                                        mButtonAnswer1.setVisibility(View.GONE);
-                                        mButtonAnswer2.setVisibility(View.GONE);
-                                        mButtonAnswer3.setVisibility(View.GONE);
-                                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                                .show();
-
-                                        mTextViewFinal.setVisibility(View.VISIBLE);
-                                        mTextViewFinal.setText("Sorry! Try again...\n"
-                                                + "Payer name: " + mPlayer.getName() + "\n"
-                                                + "Points: " + mPlayer.getPoints() + "/50");
-                                        mTextViewFinal.setTextSize(26);
-                                    }
-                                });
-                                mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
                                         //continue
                                         Toast.makeText(getContext(), "Correct!", Toast.LENGTH_SHORT)
                                                 .show();
                                         mPlayer.setPoints(mPlayer.getPoints()+5);
                                         mTextViewQuestNumber.setText("5/10");
-                                        mTextViewQuestion.setText(mDatabase.getQuestions().get(4).getQuestion());
+                                        mTextViewQuestion.setText(mListQuestions.get(4).getQuestion());
 
-                                        mButtonAnswer1.setText(mDatabase
-                                                .getQuestions()
+                                        mButtonAnswer1.setText(mListQuestions
                                                 .get(4)
-                                                .getAnswers()
-                                                .get(0));
-                                        mButtonAnswer2.setText(mDatabase
-                                                .getQuestions()
+                                                .getAnswer1());
+                                        mButtonAnswer2.setText(mListQuestions
                                                 .get(4)
-                                                .getAnswers()
-                                                .get(1));
-                                        mButtonAnswer3.setText(mDatabase
-                                                .getQuestions()
+                                                .getAnswer2());
+                                        mButtonAnswer3.setText(mListQuestions
                                                 .get(4)
-                                                .getAnswers()
-                                                .get(2));
+                                                .getAnswer3());
 
                                         mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                //fail
-                                                mTextViewQuestNumber.setVisibility(View.GONE);
-                                                mTextViewQuestion.setVisibility(View.GONE);
-                                                mButtonAnswer1.setVisibility(View.GONE);
-                                                mButtonAnswer2.setVisibility(View.GONE);
-                                                mButtonAnswer3.setVisibility(View.GONE);
-                                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                                        .show();
-
-                                                mTextViewFinal.setVisibility(View.VISIBLE);
-                                                mTextViewFinal.setText("Sorry! Try again...\n"
-                                                        + "Payer name: " + mPlayer.getName() + "\n"
-                                                        + "Points: " + mPlayer.getPoints() + "/50");
-                                                mTextViewFinal.setTextSize(26);
-                                            }
-                                        });
-                                        mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                //fail
-                                                mTextViewQuestNumber.setVisibility(View.GONE);
-                                                mTextViewQuestion.setVisibility(View.GONE);
-                                                mButtonAnswer1.setVisibility(View.GONE);
-                                                mButtonAnswer2.setVisibility(View.GONE);
-                                                mButtonAnswer3.setVisibility(View.GONE);
-                                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                                        .show();
-
-                                                mTextViewFinal.setVisibility(View.VISIBLE);
-                                                mTextViewFinal.setText("Sorry! Try again...\n"
-                                                        + "Payer name: " + mPlayer.getName() + "\n"
-                                                        + "Points: " + mPlayer.getPoints() + "/50");
-                                                mTextViewFinal.setTextSize(26);
-                                            }
-                                        });
-                                        mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
                                                 //continue
@@ -352,44 +333,19 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                                         .show();
                                                 mPlayer.setPoints(mPlayer.getPoints()+5);
                                                 mTextViewQuestNumber.setText("6/10");
-                                                mTextViewQuestion.setText(mDatabase.getQuestions().get(5).getQuestion());
+                                                mTextViewQuestion.setText(mListQuestions.get(5).getQuestion());
 
-                                                mButtonAnswer1.setText(mDatabase
-                                                        .getQuestions()
+                                                mButtonAnswer1.setText(mListQuestions
                                                         .get(5)
-                                                        .getAnswers()
-                                                        .get(0));
-                                                mButtonAnswer2.setText(mDatabase
-                                                        .getQuestions()
+                                                        .getAnswer1());
+                                                mButtonAnswer2.setText(mListQuestions
                                                         .get(5)
-                                                        .getAnswers()
-                                                        .get(1));
-                                                mButtonAnswer3.setText(mDatabase
-                                                        .getQuestions()
+                                                        .getAnswer2());
+                                                mButtonAnswer3.setText(mListQuestions
                                                         .get(5)
-                                                        .getAnswers()
-                                                        .get(2));
+                                                        .getAnswer3());
 
                                                 mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        //fail
-                                                        mTextViewQuestNumber.setVisibility(View.GONE);
-                                                        mTextViewQuestion.setVisibility(View.GONE);
-                                                        mButtonAnswer1.setVisibility(View.GONE);
-                                                        mButtonAnswer2.setVisibility(View.GONE);
-                                                        mButtonAnswer3.setVisibility(View.GONE);
-                                                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                                                .show();
-
-                                                        mTextViewFinal.setVisibility(View.VISIBLE);
-                                                        mTextViewFinal.setText("Sorry! Try again...\n"
-                                                                + "Payer name: " + mPlayer.getName() + "\n"
-                                                                + "Points: " + mPlayer.getPoints() + "/50");
-                                                        mTextViewFinal.setTextSize(26);
-                                                    }
-                                                });
-                                                mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View v) {
                                                         //continue
@@ -397,23 +353,17 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                                                 .show();
                                                         mPlayer.setPoints(mPlayer.getPoints()+5);
                                                         mTextViewQuestNumber.setText("7/10");
-                                                        mTextViewQuestion.setText(mDatabase.getQuestions().get(6).getQuestion());
+                                                        mTextViewQuestion.setText(mListQuestions.get(6).getQuestion());
 
-                                                        mButtonAnswer1.setText(mDatabase
-                                                                .getQuestions()
+                                                        mButtonAnswer1.setText(mListQuestions
                                                                 .get(6)
-                                                                .getAnswers()
-                                                                .get(0));
-                                                        mButtonAnswer2.setText(mDatabase
-                                                                .getQuestions()
+                                                                .getAnswer1());
+                                                        mButtonAnswer2.setText(mListQuestions
                                                                 .get(6)
-                                                                .getAnswers()
-                                                                .get(1));
-                                                        mButtonAnswer3.setText(mDatabase
-                                                                .getQuestions()
+                                                                .getAnswer2());
+                                                        mButtonAnswer3.setText(mListQuestions
                                                                 .get(6)
-                                                                .getAnswers()
-                                                                .get(2));
+                                                                .getAnswer3());
 
                                                         mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
                                                             @Override
@@ -437,30 +387,62 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                                         mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
                                                             @Override
                                                             public void onClick(View v) {
+                                                                //fail
+                                                                mTextViewQuestNumber.setVisibility(View.GONE);
+                                                                mTextViewQuestion.setVisibility(View.GONE);
+                                                                mButtonAnswer1.setVisibility(View.GONE);
+                                                                mButtonAnswer2.setVisibility(View.GONE);
+                                                                mButtonAnswer3.setVisibility(View.GONE);
+                                                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                                                        .show();
+
+                                                                mTextViewFinal.setVisibility(View.VISIBLE);
+                                                                mTextViewFinal.setText("Sorry! Try again...\n"
+                                                                        + "Payer name: " + mPlayer.getName() + "\n"
+                                                                        + "Points: " + mPlayer.getPoints() + "/50");
+                                                                mTextViewFinal.setTextSize(26);
+                                                            }
+                                                        });
+                                                        mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
                                                                 //continue
                                                                 Toast.makeText(getContext(), "Correct!", Toast.LENGTH_SHORT)
                                                                         .show();
                                                                 mPlayer.setPoints(mPlayer.getPoints()+5);
                                                                 mTextViewQuestNumber.setText("8/10");
-                                                                mTextViewQuestion.setText(mDatabase.getQuestions().get(7).getQuestion());
+                                                                mTextViewQuestion.setText(mListQuestions.get(7).getQuestion());
 
-                                                                mButtonAnswer1.setText(mDatabase
-                                                                        .getQuestions()
+                                                                mButtonAnswer1.setText(mListQuestions
                                                                         .get(7)
-                                                                        .getAnswers()
-                                                                        .get(0));
-                                                                mButtonAnswer2.setText(mDatabase
-                                                                        .getQuestions()
+                                                                        .getAnswer1());
+                                                                mButtonAnswer2.setText(mListQuestions
                                                                         .get(7)
-                                                                        .getAnswers()
-                                                                        .get(1));
-                                                                mButtonAnswer3.setText(mDatabase
-                                                                        .getQuestions()
+                                                                        .getAnswer2());
+                                                                mButtonAnswer3.setText(mListQuestions
                                                                         .get(7)
-                                                                        .getAnswers()
-                                                                        .get(2));
+                                                                        .getAnswer3());
 
                                                                 mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(View v) {
+                                                                        //fail
+                                                                        mTextViewQuestNumber.setVisibility(View.GONE);
+                                                                        mTextViewQuestion.setVisibility(View.GONE);
+                                                                        mButtonAnswer1.setVisibility(View.GONE);
+                                                                        mButtonAnswer2.setVisibility(View.GONE);
+                                                                        mButtonAnswer3.setVisibility(View.GONE);
+                                                                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                                                                .show();
+
+                                                                        mTextViewFinal.setVisibility(View.VISIBLE);
+                                                                        mTextViewFinal.setText("Sorry! Try again...\n"
+                                                                                + "Payer name: " + mPlayer.getName() + "\n"
+                                                                                + "Points: " + mPlayer.getPoints() + "/50");
+                                                                        mTextViewFinal.setTextSize(26);
+                                                                    }
+                                                                });
+                                                                mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
                                                                     @Override
                                                                     public void onClick(View v) {
                                                                         //continue
@@ -468,23 +450,17 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                                                                 .show();
                                                                         mPlayer.setPoints(mPlayer.getPoints()+5);
                                                                         mTextViewQuestNumber.setText("9/10");
-                                                                        mTextViewQuestion.setText(mDatabase.getQuestions().get(8).getQuestion());
+                                                                        mTextViewQuestion.setText(mListQuestions.get(8).getQuestion());
 
-                                                                        mButtonAnswer1.setText(mDatabase
-                                                                                .getQuestions()
+                                                                        mButtonAnswer1.setText(mListQuestions
                                                                                 .get(8)
-                                                                                .getAnswers()
-                                                                                .get(0));
-                                                                        mButtonAnswer2.setText(mDatabase
-                                                                                .getQuestions()
+                                                                                .getAnswer1());
+                                                                        mButtonAnswer2.setText(mListQuestions
                                                                                 .get(8)
-                                                                                .getAnswers()
-                                                                                .get(1));
-                                                                        mButtonAnswer3.setText(mDatabase
-                                                                                .getQuestions()
+                                                                                .getAnswer2());
+                                                                        mButtonAnswer3.setText(mListQuestions
                                                                                 .get(8)
-                                                                                .getAnswers()
-                                                                                .get(2));
+                                                                                .getAnswer3());
 
                                                                         mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
                                                                             @Override
@@ -508,52 +484,28 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                                                         mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
                                                                             @Override
                                                                             public void onClick(View v) {
-                                                                                //fail
-                                                                                mTextViewQuestNumber.setVisibility(View.GONE);
-                                                                                mTextViewQuestion.setVisibility(View.GONE);
-                                                                                mButtonAnswer1.setVisibility(View.GONE);
-                                                                                mButtonAnswer2.setVisibility(View.GONE);
-                                                                                mButtonAnswer3.setVisibility(View.GONE);
-                                                                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                                                                        .show();
-
-                                                                                mTextViewFinal.setVisibility(View.VISIBLE);
-                                                                                mTextViewFinal.setText("Sorry! Try again...\n"
-                                                                                        + "Payer name: " + mPlayer.getName() + "\n"
-                                                                                        + "Points: " + mPlayer.getPoints() + "/50");
-                                                                                mTextViewFinal.setTextSize(26);
-                                                                            }
-                                                                        });
-                                                                        mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
-                                                                            @Override
-                                                                            public void onClick(View v) {
                                                                                 //continue
                                                                                 Toast.makeText(getContext(), "Correct!", Toast.LENGTH_SHORT)
                                                                                         .show();
                                                                                 mPlayer.setPoints(mPlayer.getPoints()+5);
                                                                                 mTextViewQuestNumber.setText("10/10");
-                                                                                mTextViewQuestion.setText(mDatabase.getQuestions().get(9).getQuestion());
+                                                                                mTextViewQuestion.setText(mListQuestions.get(9).getQuestion());
 
-                                                                                mButtonAnswer1.setText(mDatabase
-                                                                                        .getQuestions()
+                                                                                mButtonAnswer1.setText(mListQuestions
                                                                                         .get(9)
-                                                                                        .getAnswers()
-                                                                                        .get(0));
-                                                                                mButtonAnswer2.setText(mDatabase
-                                                                                        .getQuestions()
+                                                                                        .getAnswer1());
+                                                                                mButtonAnswer2.setText(mListQuestions
                                                                                         .get(9)
-                                                                                        .getAnswers()
-                                                                                        .get(1));
-                                                                                mButtonAnswer3.setText(mDatabase
-                                                                                        .getQuestions()
+                                                                                        .getAnswer2());
+                                                                                mButtonAnswer3.setText(mListQuestions
                                                                                         .get(9)
-                                                                                        .getAnswers()
-                                                                                        .get(2));
+                                                                                        .getAnswer3());
 
                                                                                 mButtonAnswer1.setOnClickListener(new View.OnClickListener() {
                                                                                     @Override
                                                                                     public void onClick(View v) {
                                                                                         //winner
+                                                                                        mPlayer.setPoints(mPlayer.getPoints()+5);
                                                                                         mTextViewQuestNumber.setVisibility(View.GONE);
                                                                                         mTextViewQuestion.setVisibility(View.GONE);
                                                                                         mButtonAnswer1.setVisibility(View.GONE);
@@ -609,25 +561,26 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                                                                 });
                                                                             }
                                                                         });
-                                                                    }
-                                                                });
-                                                                mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
-                                                                    @Override
-                                                                    public void onClick(View v) {
-                                                                        //fail
-                                                                        mTextViewQuestNumber.setVisibility(View.GONE);
-                                                                        mTextViewQuestion.setVisibility(View.GONE);
-                                                                        mButtonAnswer1.setVisibility(View.GONE);
-                                                                        mButtonAnswer2.setVisibility(View.GONE);
-                                                                        mButtonAnswer3.setVisibility(View.GONE);
-                                                                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                                                                .show();
+                                                                        mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
+                                                                            @Override
+                                                                            public void onClick(View v) {
+                                                                                //fail
+                                                                                mTextViewQuestNumber.setVisibility(View.GONE);
+                                                                                mTextViewQuestion.setVisibility(View.GONE);
+                                                                                mButtonAnswer1.setVisibility(View.GONE);
+                                                                                mButtonAnswer2.setVisibility(View.GONE);
+                                                                                mButtonAnswer3.setVisibility(View.GONE);
+                                                                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                                                                        .show();
 
-                                                                        mTextViewFinal.setVisibility(View.VISIBLE);
-                                                                        mTextViewFinal.setText("Sorry! Try again...\n"
-                                                                                + "Payer name: " + mPlayer.getName() + "\n"
-                                                                                + "Points: " + mPlayer.getPoints() + "/50");
-                                                                        mTextViewFinal.setTextSize(26);
+                                                                                mTextViewFinal.setVisibility(View.VISIBLE);
+                                                                                mTextViewFinal.setText("Sorry! Try again...\n"
+                                                                                        + "Payer name: " + mPlayer.getName() + "\n"
+                                                                                        + "Points: " + mPlayer.getPoints() + "/50");
+                                                                                mTextViewFinal.setTextSize(26);
+                                                                            }
+                                                                        });
+
                                                                     }
                                                                 });
                                                                 mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
@@ -651,25 +604,25 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                                                 });
                                                             }
                                                         });
-                                                        mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(View v) {
-                                                                //fail
-                                                                mTextViewQuestNumber.setVisibility(View.GONE);
-                                                                mTextViewQuestion.setVisibility(View.GONE);
-                                                                mButtonAnswer1.setVisibility(View.GONE);
-                                                                mButtonAnswer2.setVisibility(View.GONE);
-                                                                mButtonAnswer3.setVisibility(View.GONE);
-                                                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                                                        .show();
+                                                    }
+                                                });
+                                                mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        //fail
+                                                        mTextViewQuestNumber.setVisibility(View.GONE);
+                                                        mTextViewQuestion.setVisibility(View.GONE);
+                                                        mButtonAnswer1.setVisibility(View.GONE);
+                                                        mButtonAnswer2.setVisibility(View.GONE);
+                                                        mButtonAnswer3.setVisibility(View.GONE);
+                                                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                                                .show();
 
-                                                                mTextViewFinal.setVisibility(View.VISIBLE);
-                                                                mTextViewFinal.setText("Sorry! Try again...\n"
-                                                                        + "Payer name: " + mPlayer.getName() + "\n"
-                                                                        + "Points: " + mPlayer.getPoints() + "/50");
-                                                                mTextViewFinal.setTextSize(26);
-                                                            }
-                                                        });
+                                                        mTextViewFinal.setVisibility(View.VISIBLE);
+                                                        mTextViewFinal.setText("Sorry! Try again...\n"
+                                                                + "Payer name: " + mPlayer.getName() + "\n"
+                                                                + "Points: " + mPlayer.getPoints() + "/50");
+                                                        mTextViewFinal.setTextSize(26);
                                                     }
                                                 });
                                                 mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
@@ -693,72 +646,69 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
                                                 });
                                             }
                                         });
+                                        mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                //fail
+                                                mTextViewQuestNumber.setVisibility(View.GONE);
+                                                mTextViewQuestion.setVisibility(View.GONE);
+                                                mButtonAnswer1.setVisibility(View.GONE);
+                                                mButtonAnswer2.setVisibility(View.GONE);
+                                                mButtonAnswer3.setVisibility(View.GONE);
+                                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                                        .show();
+
+                                                mTextViewFinal.setVisibility(View.VISIBLE);
+                                                mTextViewFinal.setText("Sorry! Try again...\n"
+                                                        + "Payer name: " + mPlayer.getName() + "\n"
+                                                        + "Points: " + mPlayer.getPoints() + "/50");
+                                                mTextViewFinal.setTextSize(26);
+                                            }
+                                        });
+                                        mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                //fail
+                                                mTextViewQuestNumber.setVisibility(View.GONE);
+                                                mTextViewQuestion.setVisibility(View.GONE);
+                                                mButtonAnswer1.setVisibility(View.GONE);
+                                                mButtonAnswer2.setVisibility(View.GONE);
+                                                mButtonAnswer3.setVisibility(View.GONE);
+                                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                                        .show();
+
+                                                mTextViewFinal.setVisibility(View.VISIBLE);
+                                                mTextViewFinal.setText("Sorry! Try again...\n"
+                                                        + "Payer name: " + mPlayer.getName() + "\n"
+                                                        + "Points: " + mPlayer.getPoints() + "/50");
+                                                mTextViewFinal.setTextSize(26);
+                                            }
+                                        });
                                     }
                                 });
+                                mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        //fail
+                                        mTextViewQuestNumber.setVisibility(View.GONE);
+                                        mTextViewQuestion.setVisibility(View.GONE);
+                                        mButtonAnswer1.setVisibility(View.GONE);
+                                        mButtonAnswer2.setVisibility(View.GONE);
+                                        mButtonAnswer3.setVisibility(View.GONE);
+                                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
+                                                .show();
 
+                                        mTextViewFinal.setVisibility(View.VISIBLE);
+                                        mTextViewFinal.setText("Sorry! Try again...\n"
+                                                + "Payer name: " + mPlayer.getName() + "\n"
+                                                + "Points: " + mPlayer.getPoints() + "/50");
+                                        mTextViewFinal.setTextSize(26);
+                                    }
+                                });
                             }
                         });
-                        mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                //fail
-                                mTextViewQuestNumber.setVisibility(View.GONE);
-                                mTextViewQuestion.setVisibility(View.GONE);
-                                mButtonAnswer1.setVisibility(View.GONE);
-                                mButtonAnswer2.setVisibility(View.GONE);
-                                mButtonAnswer3.setVisibility(View.GONE);
-                                Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                        .show();
-
-                                mTextViewFinal.setVisibility(View.VISIBLE);
-                                mTextViewFinal.setText("Sorry! Try again...\n"
-                                        + "Payer name: " + mPlayer.getName() + "\n"
-                                        + "Points: " + mPlayer.getPoints() + "/50");
-                                mTextViewFinal.setTextSize(26);
-                            }
-                        });
-
                     }
                 });
-                mButtonAnswer2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //fail
-                        mTextViewQuestNumber.setVisibility(View.GONE);
-                        mTextViewQuestion.setVisibility(View.GONE);
-                        mButtonAnswer1.setVisibility(View.GONE);
-                        mButtonAnswer2.setVisibility(View.GONE);
-                        mButtonAnswer3.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                .show();
-
-                        mTextViewFinal.setVisibility(View.VISIBLE);
-                        mTextViewFinal.setText("Sorry! Try again...\n"
-                                + "Payer name: " + mPlayer.getName() + "\n"
-                                + "Points: " + mPlayer.getPoints() + "/50");
-                        mTextViewFinal.setTextSize(26);
-                    }
-                });
-                mButtonAnswer3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //fail
-                        mTextViewQuestNumber.setVisibility(View.GONE);
-                        mTextViewQuestion.setVisibility(View.GONE);
-                        mButtonAnswer1.setVisibility(View.GONE);
-                        mButtonAnswer2.setVisibility(View.GONE);
-                        mButtonAnswer3.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), "Incorrect!", Toast.LENGTH_SHORT)
-                                .show();
-
-                        mTextViewFinal.setVisibility(View.VISIBLE);
-                        mTextViewFinal.setText("Sorry! Try again...\n"
-                                + "Payer name: " + mPlayer.getName() + "\n"
-                                + "Points: " + mPlayer.getPoints() + "/50");
-                        mTextViewFinal.setTextSize(26);
-                    }
-                });
-
             }
         });
 
@@ -785,3 +735,4 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
 
     }
 }
+

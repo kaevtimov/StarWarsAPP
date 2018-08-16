@@ -52,8 +52,9 @@
         android:id="@+id/tv_quiz_question"
         android:layout_width="318dp"
         android:layout_height="149dp"
-        android:layout_alignBottom="@+id/tv_player_name"
+        android:layout_above="@+id/et_player_name"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-238dp"
         android:background="@drawable/background_rect_text"
         android:gravity="center"
         android:textSize="22sp"
@@ -72,8 +73,7 @@
         android:id="@+id/btn_answer1"
         android:layout_width="208dp"
         android:layout_height="94dp"
-        android:layout_alignBaseline="@+id/et_player_name"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerInParent="true" />
 
     <Button
         android:id="@+id/btn_answer2"
