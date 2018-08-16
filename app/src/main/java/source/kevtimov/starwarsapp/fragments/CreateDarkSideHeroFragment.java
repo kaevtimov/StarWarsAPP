@@ -13,6 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import source.kevtimov.starwarsapp.R;
+import source.kevtimov.starwarsapp.databaseFirestore.FirebaseRepository;
+import source.kevtimov.starwarsapp.databaseFirestore.Repository;
+import source.kevtimov.starwarsapp.models.heroes.DarkSideHero;
+import source.kevtimov.starwarsapp.models.heroes.TheForceHero;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,11 +28,14 @@ public class CreateDarkSideHeroFragment extends Fragment implements View.OnClick
     private TextView mTextViewType;
     private TextView mTextViewInfo;
     private TextView mTextViewPoints;
+    private TextView mTextViewImage;
     private EditText mEditTextName;
     private EditText mEditTextType;
     private EditText mEditTextInfo;
     private EditText mEditTextPoints;
+    private EditText mEditTextImage;
     private Button mButtonFinish;
+    private Repository<DarkSideHero> mDarkSideRepository;
 
     public CreateDarkSideHeroFragment() {
         // Required empty public constructor
@@ -55,11 +62,14 @@ public class CreateDarkSideHeroFragment extends Fragment implements View.OnClick
         mTextViewInfo.setText(R.string.hero_info);
         mTextViewPoints = root.findViewById(R.id.tv_hero_points);
         mTextViewPoints.setText(R.string.hero_points);
+        mTextViewImage = root.findViewById(R.id.tv_hero_image_url);
+        mTextViewImage.setText("Image URL:");
 
         mEditTextName = root.findViewById(R.id.et_hero_name);
         mEditTextType = root.findViewById(R.id.et_hero_type);
         mEditTextInfo = root.findViewById(R.id.et_hero_info);
         mEditTextPoints = root.findViewById(R.id.et_hero_points);
+        mEditTextImage = root.findViewById(R.id.et_hero_image_url);
 
         mButtonFinish = root.findViewById(R.id.btn_finish);
         mButtonFinish.setText(R.string.finish_create);
@@ -76,12 +86,12 @@ public class CreateDarkSideHeroFragment extends Fragment implements View.OnClick
         String heroName = mEditTextName.getText().toString();
         String heroType = mEditTextType.getText().toString();
         String heroInfo = mEditTextInfo.getText().toString();
+        String heroImage = mEditTextImage.getText().toString();
         int heroPoints = Integer.parseInt(mEditTextPoints.getText().toString());
 
-        //DarkSideHero hero = new DarkSideHero(heroName, heroType, heroInfo, heroPoints);
-
-//        DarkSideViewFragment.getmDarkSideRepository().add(hero,
-//                newSuperhero -> {});
+        DarkSideHero hero = new DarkSideHero(heroName, heroType, heroInfo, heroImage, heroPoints);
+        mDarkSideRepository = new FirebaseRepository<>(DarkSideHero.class);
+        mDarkSideRepository.add(hero, newSuperhero -> {});
 
         Toast.makeText(getContext(), "Hero created", Toast.LENGTH_SHORT)
                 .show();

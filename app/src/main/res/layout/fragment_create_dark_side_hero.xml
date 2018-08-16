@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,91 +14,125 @@
         android:layout_width="match_parent"
         android:layout_height="220dp" />
 
-    <TextView
-        android:id="@+id/tv_hero_name"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorWhite"
-        android:textSize="14sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/et_hero_name"
-        android:inputType="text"
-        android:textColor="@color/colorBlack"
-        android:hint="  Enter hero name:"
-        android:textColorHint="@color/colorGrey"
-        android:background="@drawable/edit_text_style"
-        android:textColorHighlight="@color/colorGold"
+    <ScrollView
+        android:layout_below="@+id/create_sith"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_hero_type"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorWhite"
-        android:textSize="14sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/et_hero_type"
-        android:inputType="text"
-        android:textColor="@color/colorBlack"
-        android:textColorHint="@color/colorGrey"
-        android:hint="  Enter hero type:"
-        android:background="@drawable/edit_text_style"
-        android:textColorHighlight="@color/colorGold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_hero_name"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tv_hero_info"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorWhite"
-        android:textSize="14sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_hero_name"
+                android:inputType="text"
+                android:textColor="@color/colorBlack"
+                android:hint="  Enter hero name:"
+                android:textColorHint="@color/colorGrey"
+                android:background="@drawable/edit_text_style"
+                android:textColorHighlight="@color/colorGold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/et_hero_info"
-        android:inputType="text"
-        android:textColor="@color/colorBlack"
-        android:textColorHint="@color/colorGrey"
-        android:hint="  Information about hero:"
-        android:background="@drawable/edit_text_style"
-        android:textColorHighlight="@color/colorGold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_hero_type"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tv_hero_points"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorWhite"
-        android:textSize="14sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_hero_type"
+                android:inputType="text"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorGrey"
+                android:hint="  Enter hero type:"
+                android:background="@drawable/edit_text_style"
+                android:textColorHighlight="@color/colorGold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/et_hero_points"
-        android:inputType="text"
-        android:textColor="@color/colorBlack"
-        android:textColorHint="@color/colorGrey"
-        android:hint="  Anger points:"
-        android:background="@drawable/edit_text_style"
-        android:textColorHighlight="@color/colorGold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_hero_info"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_finish"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_hero_info"
+                android:inputType="text"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorGrey"
+                android:hint="  Information about hero:"
+                android:background="@drawable/edit_text_style"
+                android:textColorHighlight="@color/colorGold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv_hero_image_url"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/et_hero_image_url"
+                android:inputType="text"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorGrey"
+                android:hint="  Image URL:"
+                android:background="@drawable/edit_text_style"
+                android:textColorHighlight="@color/colorGold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_hero_points"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/et_hero_points"
+                android:inputType="text"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorGrey"
+                android:hint="  Anger points:"
+                android:background="@drawable/edit_text_style"
+                android:textColorHighlight="@color/colorGold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_finish"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

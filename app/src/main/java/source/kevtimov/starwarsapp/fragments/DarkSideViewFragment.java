@@ -97,8 +97,9 @@ public class DarkSideViewFragment extends Fragment implements AdapterView.OnItem
         return root;
     }
 
-
-
+    public static Repository<DarkSideHero> getmDarkSideRepository() {
+        return mDarkSideRepository;
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

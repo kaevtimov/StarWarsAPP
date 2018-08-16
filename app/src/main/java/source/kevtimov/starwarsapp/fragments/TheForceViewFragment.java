@@ -95,6 +95,10 @@ public class TheForceViewFragment extends Fragment implements AdapterView.OnItem
         return root;
     }
 
+    public static Repository<TheForceHero> getmTheForceRepository() {
+        return mTheForceRepository;
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         TheForceHero hero = mAdapterForceHero.getItem(position);
