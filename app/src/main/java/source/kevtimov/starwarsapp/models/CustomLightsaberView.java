@@ -1,4 +1,4 @@
-package source.kevtimov.starwarsapp;
+package source.kevtimov.starwarsapp.models;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -41,10 +41,6 @@ public class TheForceViewFragment extends Fragment implements AdapterView.OnItem
         // Required empty public constructor
     }
 
-    public static TheForceViewFragment createInstance() {
-        return new TheForceViewFragment();
-    }
-
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -95,8 +91,9 @@ public class TheForceViewFragment extends Fragment implements AdapterView.OnItem
         return root;
     }
 
-    public static Repository<TheForceHero> getmTheForceRepository() {
-        return mTheForceRepository;
+
+    public static TheForceViewFragment createInstance() {
+        return new TheForceViewFragment();
     }
 
     @Override

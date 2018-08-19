@@ -30,9 +30,7 @@ public class ShowHeroFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ShowHeroFragment createInstance(){
-        return new ShowHeroFragment();
-    }
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -55,6 +53,11 @@ public class ShowHeroFragment extends Fragment {
 
 
         return root;
+    }
+
+
+    public static ShowHeroFragment createInstance(){
+        return new ShowHeroFragment();
     }
 
     public void setHero(Hero hero){

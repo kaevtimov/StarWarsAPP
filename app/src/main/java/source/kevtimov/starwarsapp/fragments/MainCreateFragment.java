@@ -29,10 +29,6 @@ public class MainCreateFragment extends Fragment implements View.OnClickListener
         // Required empty public constructor
     }
 
-    public static MainCreateFragment createInstance(){
-        return new MainCreateFragment();
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +51,11 @@ public class MainCreateFragment extends Fragment implements View.OnClickListener
 
 
         return root;
+    }
+
+
+    public static MainCreateFragment createInstance(){
+        return new MainCreateFragment();
     }
 
     @Override

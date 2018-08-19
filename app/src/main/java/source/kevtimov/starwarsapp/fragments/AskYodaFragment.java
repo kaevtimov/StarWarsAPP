@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -31,10 +32,6 @@ public class AskYodaFragment extends Fragment implements View.OnClickListener {
 
     public AskYodaFragment() {
         // Required empty public constructor
-    }
-
-    public static AskYodaFragment createInstance(){
-        return new AskYodaFragment();
     }
 
 
@@ -68,6 +65,11 @@ public class AskYodaFragment extends Fragment implements View.OnClickListener {
         return root;
     }
 
+
+    public static AskYodaFragment createInstance(){
+        return new AskYodaFragment();
+    }
+
     @Override
     public void onClick(View view) {
 
@@ -81,61 +83,66 @@ public class AskYodaFragment extends Fragment implements View.OnClickListener {
                 mEditTextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mEditText.setVisibility(View.INVISIBLE);
-                        mEditTextButton.setVisibility(View.INVISIBLE);
+                        if(mEditText.getText().toString().length() > 0){
+                            mEditText.setVisibility(View.INVISIBLE);
+                            mEditTextButton.setVisibility(View.INVISIBLE);
 
-                        mTextView.setVisibility(View.VISIBLE);
-                        int min = 1;
-                        int max = 15;
-                        Random random = new Random();
-                        int number = random.nextInt((max - min) + 1) + min;
+                            mTextView.setVisibility(View.VISIBLE);
+                            int min = 1;
+                            int max = 15;
+                            Random random = new Random();
+                            int number = random.nextInt((max - min) + 1) + min;
 
-                        switch (number){
-                            case 1:
-                                mTextView.setText("The force is not clear with the answer. Try again later.");
-                                break;
-                            case 2:
-                                mTextView.setText("Yes, it will.");
-                                break;
-                            case 3:
-                                mTextView.setText("The force says no...");
-                                break;
-                            case 4:
-                                mTextView.setText("No.");
-                                break;
-                            case 5:
-                                mTextView.setText("Tell you not better now.");
-                                break;
-                            case 6:
-                                mTextView.setText("I can't predict now.");
-                                break;
-                            case 7:
-                                mTextView.setText("The force points to YES.");
-                                break;
-                            case 8:
-                                mTextView.setText("Yes - definitely.");
-                                break;
-                            case 9:
-                                mTextView.setText("The force says very doubtful.");
-                                break;
-                            case 10:
-                                mTextView.setText("Absolutely.");
-                                break;
-                            case 11:
-                                mTextView.setText("Negative.");
-                                break;
-                            case 12:
-                                mTextView.setText("Leave me alone, I am trying to sleep.");
-                                break;
-                            case 13:
-                                mTextView.setText("You may rely on it.");
-                                break;
-                            case 14:
-                                mTextView.setText("I feel disturbance in the force right now.");
-                                break;
-                            case 15:
-                                mTextView.setText("Go away, I don't want to answer you.");
-                                break;
+                            switch (number){
+                                case 1:
+                                    mTextView.setText("The force is not clear with the answer. Try again later.");
+                                    break;
+                                case 2:
+                                    mTextView.setText("Yes, it will.");
+                                    break;
+                                case 3:
+                                    mTextView.setText("The force says no...");
+                                    break;
+                                case 4:
+                                    mTextView.setText("No.");
+                                    break;
+                                case 5:
+                                    mTextView.setText("Tell you not better now.");
+                                    break;
+                                case 6:
+                                    mTextView.setText("I can't predict now.");
+                                    break;
+                                case 7:
+                                    mTextView.setText("The force points to YES.");
+                                    break;
+                                case 8:
+                                    mTextView.setText("Yes - definitely.");
+                                    break;
+                                case 9:
+                                    mTextView.setText("The force says very doubtful.");
+                                    break;
+                                case 10:
+                                    mTextView.setText("Absolutely.");
+                                    break;
+                                case 11:
+                                    mTextView.setText("Negative.");
+                                    break;
+                                case 12:
+                                    mTextView.setText("Leave me alone, I am trying to sleep.");
+                                    break;
+                                case 13:
+                                    mTextView.setText("You may rely on it.");
+                                    break;
+                                case 14:
+                                    mTextView.setText("I feel disturbance in the force right now.");
+                                    break;
+                                case 15:
+                                    mTextView.setText("Go away, I don't want to answer you.");
+                                    break;
+                            }
+                        }else{
+                            Toast.makeText(getContext(), "Enter a question!", Toast.LENGTH_SHORT)
+                                    .show();
                         }
                     }
                 });

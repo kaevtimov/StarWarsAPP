@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import source.kevtimov.starwarsapp.CustomLightsaberView;
+import source.kevtimov.starwarsapp.models.CustomLightsaberView;
 import source.kevtimov.starwarsapp.R;
 
 /**
@@ -28,11 +28,6 @@ public class LightsaberFragment extends Fragment {
     public LightsaberFragment() {
         // Required empty public constructor
     }
-
-    public static LightsaberFragment createInstance(){
-        return new LightsaberFragment();
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,6 +70,11 @@ public class LightsaberFragment extends Fragment {
 
 
         return root;
+    }
+
+
+    public static LightsaberFragment createInstance(){
+        return new LightsaberFragment();
     }
 
 }

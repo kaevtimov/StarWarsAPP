@@ -37,10 +37,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-    public static MainFragment createInstance(){
-        return new MainFragment();
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +63,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         mImageView = root.findViewById(R.id.iv_start);
 
         return root;
+    }
+
+
+    public static MainFragment createInstance(){
+        return new MainFragment();
     }
 
     @Override

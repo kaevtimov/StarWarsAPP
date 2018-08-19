@@ -22,10 +22,6 @@ public class OptionsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static OptionsFragment createInstance(){
-        return new OptionsFragment();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +32,11 @@ public class OptionsFragment extends Fragment {
 
 
         return root;
+    }
+
+
+    public static OptionsFragment createInstance(){
+        return new OptionsFragment();
     }
 
 }

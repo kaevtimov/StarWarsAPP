@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.LightsaberFragment">
 
-    <source.kevtimov.starwarsapp.CustomLightsaberView
+    <source.kevtimov.starwarsapp.models.CustomLightsaberView
         android:id="@+id/customview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -29,10 +29,6 @@ public class ChooseViewFragment extends Fragment implements View.OnClickListener
         // Required empty public constructor
     }
 
-    public static ChooseViewFragment createInstance(){
-        return new ChooseViewFragment();
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +50,11 @@ public class ChooseViewFragment extends Fragment implements View.OnClickListener
 
 
         return root;
+    }
+
+
+    public static ChooseViewFragment createInstance(){
+        return new ChooseViewFragment();
     }
 
     @Override

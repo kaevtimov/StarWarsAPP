@@ -41,10 +41,6 @@ public class DarkSideViewFragment extends Fragment implements AdapterView.OnItem
         // Required empty public constructor
     }
 
-    public static DarkSideViewFragment createInstance(){
-        return new DarkSideViewFragment();
-    }
-
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -92,13 +88,12 @@ public class DarkSideViewFragment extends Fragment implements AdapterView.OnItem
             }
         });
 
-
-
         return root;
     }
 
-    public static Repository<DarkSideHero> getmDarkSideRepository() {
-        return mDarkSideRepository;
+
+    public static DarkSideViewFragment createInstance(){
+        return new DarkSideViewFragment();
     }
 
     @Override

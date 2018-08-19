@@ -41,11 +41,6 @@ public class CreateTheForceHeroFragment extends Fragment implements View.OnClick
         // Required empty public constructor
     }
 
-    public static CreateTheForceHeroFragment createInstance(){
-        return new CreateTheForceHeroFragment();
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,6 +75,11 @@ public class CreateTheForceHeroFragment extends Fragment implements View.OnClick
         return root;
     }
 
+
+    public static CreateTheForceHeroFragment createInstance(){
+        return new CreateTheForceHeroFragment();
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -87,14 +87,21 @@ public class CreateTheForceHeroFragment extends Fragment implements View.OnClick
         String heroType = mEditTextType.getText().toString();
         String heroInfo = mEditTextInfo.getText().toString();
         String heroImage = mEditTextImage.getText().toString();
-        int heroPoints = Integer.parseInt(mEditTextPoints.getText().toString());
+        String points = mEditTextPoints.getText().toString();
+        int heroPoints = Integer.parseInt(points);
 
-        TheForceHero hero = new TheForceHero(heroName, heroType, heroInfo, heroImage, heroPoints);
-        mTheForceRepository = new FirebaseRepository<>(TheForceHero.class);
-        mTheForceRepository.add(hero, newSuperhero -> {});
+        if((heroName.length() > 0 && heroType.length() > 0
+                && heroInfo.length() > 0 && heroImage.length() > 0 && points.length() > 0)){
+            TheForceHero hero = new TheForceHero(heroName, heroType, heroInfo, heroImage, heroPoints);
+            mTheForceRepository = new FirebaseRepository<>(TheForceHero.class);
+            mTheForceRepository.add(hero, newSuperhero -> {});
 
-
-        Toast.makeText(getContext(), "Hero created", Toast.LENGTH_SHORT)
-                .show();
+            Toast.makeText(getContext(), "Hero created", Toast.LENGTH_SHORT)
+                    .show();
+        }else if(heroName.length() <= 0 || heroType.length() <= 0
+                || heroInfo.length() <= 0 || heroImage.length() <= 0 || points.length() <= 0){
+            Toast.makeText(getContext(), "Fill every field above!", Toast.LENGTH_SHORT)
+                    .show();
+        }
     }
 }

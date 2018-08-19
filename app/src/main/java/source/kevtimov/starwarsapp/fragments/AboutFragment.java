@@ -27,10 +27,6 @@ public class AboutFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static AboutFragment createInstance(){
-        return new AboutFragment();
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +45,11 @@ public class AboutFragment extends Fragment {
 
 
         return root;
+    }
+
+
+    public static AboutFragment createInstance(){
+        return new AboutFragment();
     }
 
 }
