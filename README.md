@@ -1,4 +1,7 @@
 # StarWarsAPP
+
+![Image of Yaktocat](https://www.kino.dk/sites/default/files/styles/k_width_big/public/primary-pictures/1_11.jpg?itok=agSvdH14)
+
 Project name: STAR WARS demo application
 Developer: Kristiqn Evtimov (mc_hack)
 
