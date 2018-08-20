@@ -40,7 +40,6 @@ public class QuizFragment extends Fragment implements View.OnClickListener {
     private TextView mTextViewQuestion;
     private TextView mTextViewQuestNumber;
     private TextView mTextViewFinal;
-    private static int questionNumber = 1;
 
     public QuizFragment() {
         // Required empty public constructor

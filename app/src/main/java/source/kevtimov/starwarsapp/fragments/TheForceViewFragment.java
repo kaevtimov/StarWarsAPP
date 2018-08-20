@@ -78,10 +78,6 @@ public class TheForceViewFragment extends Fragment implements AdapterView.OnItem
 
         mTheForceRepository = new FirebaseRepository<>(TheForceHero.class);
 
-//        mTheForceRepository.add(new TheForceHero("Koko", "Rebel", "Luke sister"),
-//                newHero -> {});
-//
-//
         mTheForceRepository.getAll(theForceHeroes -> {
             for (TheForceHero hero : theForceHeroes) {
                 mAdapterForceHero.add(hero);

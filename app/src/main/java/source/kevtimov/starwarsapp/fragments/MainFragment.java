@@ -72,7 +72,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        mAnim.setDuration(120); // here I can menage the speed of blinking
+        mAnim.setDuration(120);
         mAnim.setStartOffset(20);
         mAnim.setRepeatMode(Animation.REVERSE);
         mAnim.setRepeatCount(Animation.INFINITE);

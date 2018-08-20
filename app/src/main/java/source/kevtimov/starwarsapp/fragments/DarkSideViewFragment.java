@@ -78,10 +78,6 @@ public class DarkSideViewFragment extends Fragment implements AdapterView.OnItem
         mDarkSideRepository = new FirebaseRepository<>(DarkSideHero.class);
 
 
-        //        mDarkSideRepository.add(new DarkSideHero("Darth Vader", "Sith", "Luke father"),
-//                newHero -> {});
-//
-//
         mDarkSideRepository.getAll(darkSideHeroes -> {
             for (DarkSideHero hero : darkSideHeroes) {
                 mAdapterDarkSide.add(hero);
